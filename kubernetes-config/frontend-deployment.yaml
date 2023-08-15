@@ -1,23 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
   labels:
-    app: frontend
+    service: frontend
+  name: frontend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: frontend
+      service: frontend
   template:
     metadata:
       labels:
-        app: frontend
+        service: frontend
+        api: external
     spec:
       containers:
-      - name: frontend
-        image: hieuchunhat/udagram-frontend:v10
-        ports:
-        - containerPort: 80
-        imagePullPolicy: Always
-
+        - image: hieuchunhat/udagram-frontend:v2
+          name: frontend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "150m"
+            limits:
+              memory: "1024Mi"
+              cpu: "300m"
+      restartPolicy: Always

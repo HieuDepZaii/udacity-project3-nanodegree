@@ -2,11 +2,15 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: env-configmap
+  namespace: default
 data:
-  POSTGRES_HOST: udacity-project3.c3mw7srnezvr.us-east-1.rds.amazonaws.com
-  POSTGRES_DB: postgres
   AWS_BUCKET: hieuvn3-project3-bucket
   AWS_PROFILE: default
   AWS_REGION: us-east-1
-  JWT_SECRET: testing
+  JWT_SECRET: dGVzdGluZw==
+  POSTGRES_DB: postgres
+  POSTGRES_HOST: udacity-project3.c3mw7srnezvr.us-east-1.rds.amazonaws.com
   URL: http://localhost:8100
+  NODE_OPTIONS: --max-old-space-size=1024
+metadata:
+  name: env-config
